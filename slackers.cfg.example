@@ -1,0 +1,7 @@
+[ec2bot]
+SLACK_TOKEN=PUT_KEY_HERE
+CHANNEL=#slackers
+EC2_EVENT_QUEUE_NAME=awsmonitor
+
+# Comma separated list of required ec2 tags
+REQUIRED_TAGS=Name

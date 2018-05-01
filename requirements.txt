@@ -1,0 +1,3 @@
+pylint
+boto3
+slackclient
