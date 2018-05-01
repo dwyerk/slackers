@@ -39,7 +39,7 @@ def get_instance_state():
         for instance in reservation['Instances']:
             instance_id = instance['InstanceId']
             state = instance['State']['Name']
-            tags = instance['Tags']
+            tags = instance.get('Tags', [])
 
             tag_map = {}
             for tag in tags:
@@ -64,7 +64,7 @@ def parse_event(event):
     # Only non-terminated instances will have this
     if desc['Reservations']:
         instance = desc['Reservations'][0]['Instances'][0]
-        tags = instance['Tags']
+        tags = instance.get('Tags', [])
 
         tag_map = {}
         for tag in tags:
