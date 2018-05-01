@@ -9,7 +9,7 @@ A collection of Slack bots.
 ## ec2bot
 ec2bot monitors an SQS queue for ec2 events. This includes any state change notification for the ec2 instances in your account. State changes are reported to the configured channel subject to the configuration parameters described below. Slack messages will look something like this:
 
-![Image of jakebot](https://github.com/dwyerk/slackers/blob/master/jakemsg.png)
+![Image of jakebot](jakemsg.png)
 
 ec2bot uses boto3, which means that you also need to configure your shell to have access to the SQS queue. That's beyond the scope of this document, but the author uses the `AWS_PROFILE` environment variable to select the correct AWS credentials.
 
