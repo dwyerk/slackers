@@ -5,3 +5,5 @@ EC2_EVENT_QUEUE_NAME=awsmonitor
 
 # Comma separated list of required ec2 tags
 REQUIRED_TAGS=Name
+
+IGNORED_INSTANCE_NAME_REGEX=

@@ -9,6 +9,7 @@ import threading
 import time
 import queue
 import sys
+import re
 
 if len(sys.argv) < 2:
     print("ERROR: missing path to slackers.cfg")
@@ -18,6 +19,11 @@ CONFIGS = configparser.ConfigParser()
 CONFIGS.read(sys.argv[1])
 CONFIG = CONFIGS['ec2bot']
 REQUIRED_TAGS = set(CONFIG['REQUIRED_TAGS'].split(','))
+name_regex = CONFIG['IGNORED_INSTANCE_NAME_REGEX']
+if name_regex:
+    IGNORED_INSTANCE_NAME_REGEX = re.compile(name_regex)
+else:
+    IGNORED_INSTANCE_NAME_REGEX = None
 
 InstanceState = namedtuple(
     "InstanceState", ["instance_id", "state", "missing_tags", "found_tags"])
@@ -65,6 +71,11 @@ def parse_event(event):
             tag_map[tag['Key']] = tag['Value']
 
         missing_tags = REQUIRED_TAGS - set(tag_map)
+
+        if 'Name' in tag_map and IGNORED_INSTANCE_NAME_REGEX:
+            matches = IGNORED_INSTANCE_NAME_REGEX.search(tag_map['Name'])
+            if matches:
+                return None
 
         msg = 'ec2 event: {}, id: {}, public_ip: {}, private_ip: {}, tags: {}' \
               .format(
@@ -120,10 +131,11 @@ def main(msg_queue, channel):
             try:
                 event = msg_queue.get_nowait()
                 print("New event:", event)
-                parsed_event = parse_event(event)
-                slack_client.api_call(
-                    "chat.postMessage", channel=channel, text=parsed_event,
-                    as_user=True)
+                message = parse_event(event)
+                if message:
+                    slack_client.api_call(
+                        "chat.postMessage", channel=channel, text=message,
+                        as_user=True)
             except queue.Empty:
                 pass
 
