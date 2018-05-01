@@ -13,6 +13,7 @@ ec2bot monitors an SQS queue for ec2 events. This includes any state change noti
 
 ec2bot uses boto3, which means that you also need to configure your shell to have access to the SQS queue. That's beyond the scope of this document, but the author uses the `AWS_PROFILE` environment variable to select the correct AWS credentials.
 
+### Configure & run ec2bot
 1. Create an SQS queue (called `awsmonitor` for this example)
 2. Create a new CloudWatch Rule with a source of `aws.ec2` and a target of `awsmonitor`
 3. Create a Slack Bot (Workspace -> Manage Apps -> Custom Integrations -> Bots -> Add Configuration)
