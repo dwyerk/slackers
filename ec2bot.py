@@ -86,7 +86,7 @@ def parse_event(event):
                   ', '.join(['{}={}'.format(k,v) for k,v in tag_map.items()]))
 
         if missing_tags:
-            msg += '*missing tags: {}*'.format(', '.join(missing_tags))
+            msg += ' *missing tags: {}*'.format(', '.join(missing_tags))
 
         return msg
 
