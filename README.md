@@ -30,6 +30,9 @@ TODO: This should be more configurable beyond a single regex and should be possi
 ## wybott
 A bunch of jank that trains a markov chain generator and imitates that user on Slack.
 
+Once propertly trained, wybott will say things like:
+![Image of wybott talking](wybott4.png)
+
 ### Train a model
 First, get some content to train on. I did this initially by pulling everything
 that a particular user said publicly from our elasticsearch index and putting it
