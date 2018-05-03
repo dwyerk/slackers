@@ -31,7 +31,9 @@ TODO: This should be more configurable beyond a single regex and should be possi
 A bunch of jank that trains a markov chain generator and imitates that user on Slack.
 
 ### Train a model
-First, get some content to train on. I did this initially by running `wybott_corpus.py` to pull everything that a particular user said publicly from an elasticsearch index.
+First, get some content to train on. I did this initially by pulling everything
+that a particular user said publicly from our elasticsearch index and putting it
+into a file, one line per sentence.
 
 Next, train a model. I used `wybott-trainer.py` to train the model based on the file of sentences.
 
