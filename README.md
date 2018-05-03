@@ -27,7 +27,7 @@ Nag the slack channel when instances start up that are missing this list of tags
 Set the IGNORED_INSTANCE_NAME_REGEX to a regex string to ignore certain indexes.
 TODO: This should be more configurable beyond a single regex and should be possible to apply to other tags and metadata (such as state change event).
 
-## wybott ![wybott avatar](wybott.png)
+## wybott
 A bunch of jank that trains a markov chain generator and imitates that user on Slack.
 
 ### Train a model
