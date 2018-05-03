@@ -7,3 +7,13 @@ EC2_EVENT_QUEUE_NAME=awsmonitor
 REQUIRED_TAGS=Name
 
 IGNORED_INSTANCE_NAME_REGEX=
+
+[wybott]
+SLACK_TOKEN=PUT_KEY_HERE
+MODEL_PATH=wybott.model.json
+TEST_MODE=False
+TEST_CHANNEL=#wybott-test
+# should use the name and just discover it
+TEST_CHANNEL_ID=CXXXXXXXX
+# min seconds to wait before sending an unsolicited message
+AWHILE=9600

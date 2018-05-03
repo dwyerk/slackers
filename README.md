@@ -26,3 +26,13 @@ Nag the slack channel when instances start up that are missing this list of tags
 ### Ignored instances
 Set the IGNORED_INSTANCE_NAME_REGEX to a regex string to ignore certain indexes.
 TODO: This should be more configurable beyond a single regex and should be possible to apply to other tags and metadata (such as state change event).
+
+## wybott ![wybott avatar](wybott.png)
+A bunch of jank that trains a markov chain generator and imitates that user on Slack.
+
+### Train a model
+First, get some content to train on. I did this initially by running `wybott_corpus.py` to pull everything that a particular user said publicly from an elasticsearch index.
+
+Next, train a model. I used `wybott-trainer.py` to train the model based on the file of sentences.
+
+Finally, run the bot with that model. `python wybott.py` will use `slackers.cfg` to find your model and connect to Slack.

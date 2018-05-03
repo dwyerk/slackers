@@ -1,3 +1,9 @@
 pylint
-boto3
 slackclient
+
+# ec2bot
+boto3
+
+# wybott
+elasticsearch
+markovify
