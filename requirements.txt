@@ -5,5 +5,5 @@ slackclient
 boto3
 
 # wybott
-elasticsearch
+#elasticsearch
 markovify
