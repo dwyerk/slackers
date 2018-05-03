@@ -31,6 +31,7 @@ TODO: This should be more configurable beyond a single regex and should be possi
 A bunch of jank that trains a markov chain generator and imitates that user on Slack.
 
 Once propertly trained, wybott will say things like:
+
 ![Image of wybott talking](wybott4.png)
 
 ### Train a model
