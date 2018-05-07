@@ -24,8 +24,11 @@ ec2bot uses boto3, which means that you also need to configure your shell to hav
 Nag the slack channel when instances start up that are missing this list of tags. REQUIRED_TAGS should be a comma separated list of tags that should be present on every instance.
 
 ### Ignored instances
-Set the IGNORED_INSTANCE_NAME_REGEX to a regex string to ignore certain indexes.
-TODO: This should be more configurable beyond a single regex and should be possible to apply to other tags and metadata (such as state change event).
+Set IGNORED_INSTANCE_NAME_REGEX to a regex string to ignore certain indexes.
+TODO: This should be more configurable beyond a single regex and should be possible to apply to other tags and metadata. Likely this should be a more general solution that allows for json path queries.
+
+### Ignored states
+Set IGNORED_STATES to a comma separated list of states to ignore. If the state matches one of these states, the event will not appear in the Slack channel.
 
 ## wybott
 A bunch of jank that trains a markov chain generator and imitates that user on Slack.

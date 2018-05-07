@@ -25,6 +25,8 @@ if name_regex:
 else:
     IGNORED_INSTANCE_NAME_REGEX = None
 
+IGNORED_STATES = CONFIG['IGNORED_STATES'].split(',')
+
 InstanceState = namedtuple(
     "InstanceState", ["instance_id", "state", "missing_tags", "found_tags"])
 
@@ -55,6 +57,11 @@ def get_instance_state():
 def parse_event(event):
     ec2 = boto3.client('ec2')
     instance_id = event['detail']['instance-id']
+
+    event_state = event['detail']['state']
+    if event_state in IGNORED_STATES:
+        return None
+
     try:
         desc = ec2.describe_instances(InstanceIds=[instance_id])
     except botocore.exceptions.ClientError:
@@ -79,7 +86,7 @@ def parse_event(event):
 
         msg = 'ec2 event: {}, id: {}, public_ip: {}, private_ip: {}, tags: {}' \
               .format(
-                  event['detail']['state'],
+                  event_state,
                   instance_id,
                   instance.get('PublicIpAddress'),
                   instance.get('PrivateIpAddress'),

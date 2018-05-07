@@ -8,6 +8,9 @@ REQUIRED_TAGS=Name
 
 IGNORED_INSTANCE_NAME_REGEX=
 
+# Comma separated list of ignored ec2 states
+IGNORED_STATES=pending
+
 [wybott]
 SLACK_TOKEN=PUT_KEY_HERE
 MODEL_PATH=wybott.model.json
